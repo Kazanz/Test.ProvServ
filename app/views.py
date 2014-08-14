@@ -12,8 +12,10 @@ def verify():
     ip = get_ip(request)
     servers = ProvServer.query.all()
     for server in servers:
-        if server.ip == ip:
+        ips = server.ips.split(',')
+        if ip in ips:
             server.test_passed = True
             server.date_of_test = datetime.now()
+            db.session.add(server)
     db.session.commit()
     return ip

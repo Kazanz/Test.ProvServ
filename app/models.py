@@ -6,7 +6,7 @@ class ProvServer(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     device_id = db.Column(db.Integer, nullable=False)
-    ip = db.Column(db.String(25), nullable=False)
+    ips = db.Column(db.String(25), nullable=False)
     in_use = db.Column(db.Boolean, nullable=False)
     test_passed = db.Column(db.Boolean)
     date_of_test = db.Column(db.String(50))
