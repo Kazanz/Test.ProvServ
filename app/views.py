@@ -9,6 +9,7 @@ from app.models import ProvServer
 
 @app.route('/')
 def verify():
+    valid = False
     ip = get_ip(request)
     servers = ProvServer.query.all()
     for server in servers:
@@ -17,5 +18,6 @@ def verify():
             server.test_passed = True
             server.date_of_test = datetime.now()
             db.session.add(server)
+            valid = True
     db.session.commit()
-    return ip
+    return ip + " " + unicode(valid)
